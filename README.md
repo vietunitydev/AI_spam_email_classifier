@@ -154,5 +154,5 @@ MIT License
 Contributions are welcome! Please feel free to submit a Pull Request.
 ## Acknowledgments
 
-The SpamAssassin Public Corpus: https://spamassassin.apache.org/old/publiccorpus/
-The Enron Spam Dataset: http://www.aueb.gr/users/ion/data/enron-spam/
+- The SpamAssassin Public Corpus: https://spamassassin.apache.org/old/publiccorpus/
+- The Enron Spam Dataset: http://www.aueb.gr/users/ion/data/enron-spam/
