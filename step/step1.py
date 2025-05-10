@@ -17,7 +17,7 @@ def download_and_process_data():
     print("=" * 50 + "\n")
 
     # Thiết lập thông số
-    dataset_name = 'spamassassin'  # 'spamassassin' hoặc 'enron'
+    dataset_name = 'enron'  # 'spamassassin' hoặc 'enron'
     limit_emails = None  # Số lượng email để xử lý (None để xử lý tất cả)
 
     # Khởi tạo data loader

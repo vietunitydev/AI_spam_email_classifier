@@ -18,6 +18,9 @@ from email.header import decode_header
 from src.utils.logger import logger
 from src.utils.config import RAW_DATA_DIR, PROCESSED_DATA_DIR
 
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
+
 
 class EmailDataLoader:
     """
@@ -44,27 +47,68 @@ class EmailDataLoader:
         self.spam_dir = os.path.join(self.processed_dir, 'spam')
         self.ham_dir = os.path.join(self.processed_dir, 'ham')
 
-        # URLs for datasets
         self.dataset_urls = {
             'spamassassin': [
+                # 2002 collections
                 'https://spamassassin.apache.org/old/publiccorpus/20021010_easy_ham.tar.bz2',
                 'https://spamassassin.apache.org/old/publiccorpus/20021010_hard_ham.tar.bz2',
-                'https://spamassassin.apache.org/old/publiccorpus/20021010_spam.tar.bz2'
+                'https://spamassassin.apache.org/old/publiccorpus/20021010_spam.tar.bz2',
+
+                # 2003 collections
+                'https://spamassassin.apache.org/old/publiccorpus/20030228_easy_ham.tar.bz2',
+                'https://spamassassin.apache.org/old/publiccorpus/20030228_easy_ham_2.tar.bz2',
+                'https://spamassassin.apache.org/old/publiccorpus/20030228_hard_ham.tar.bz2',
+                'https://spamassassin.apache.org/old/publiccorpus/20030228_spam.tar.bz2',
+                'https://spamassassin.apache.org/old/publiccorpus/20030228_spam_2.tar.bz2',
+
+                # 2005 collection
+                'https://spamassassin.apache.org/old/publiccorpus/20050311_spam_2.tar.bz2'
             ],
             'enron': [
-                'http://www.aueb.gr/users/ion/data/enron-spam/preprocessed/enron1.tar.gz'
-            ]
+            # Đầy đủ bộ dữ liệu Enron (6 tập)
+            'http://www.aueb.gr/users/ion/data/enron-spam/preprocessed/enron1.tar.gz',
+            'http://www.aueb.gr/users/ion/data/enron-spam/preprocessed/enron2.tar.gz',
+            'http://www.aueb.gr/users/ion/data/enron-spam/preprocessed/enron3.tar.gz',
+            'http://www.aueb.gr/users/ion/data/enron-spam/preprocessed/enron4.tar.gz',
+            'http://www.aueb.gr/users/ion/data/enron-spam/preprocessed/enron5.tar.gz',
+            'http://www.aueb.gr/users/ion/data/enron-spam/preprocessed/enron6.tar.gz'
+        ]
         }
 
         # Directory structure for each dataset
         self.dataset_structures = {
             'spamassassin': {
-                'spam_folders': ['spam'],
-                'ham_folders': ['easy_ham', 'hard_ham']
+                'spam_folders': [
+                    'spam',  # từ 20021010_spam
+                    'spam_2',  # từ 20030228_spam_2
+                    '20030228_spam',  # từ 20030228_spam
+                    '20050311_spam_2'  # từ 20050311_spam_2
+                ],
+                'ham_folders': [
+                    'easy_ham',  # từ 20021010_easy_ham
+                    'hard_ham',  # từ 20021010_hard_ham
+                    '20030228_easy_ham',  # từ 20030228_easy_ham
+                    '20030228_easy_ham_2',  # từ 20030228_easy_ham_2
+                    '20030228_hard_ham'  # từ 20030228_hard_ham
+                ]
             },
             'enron': {
-                'spam_folders': ['enron1/spam'],
-                'ham_folders': ['enron1/ham']
+                'spam_folders': [
+                    'enron1/spam',
+                    'enron2/spam',
+                    'enron3/spam',
+                    'enron4/spam',
+                    'enron5/spam',
+                    'enron6/spam'
+                ],
+                'ham_folders': [
+                    'enron1/ham',
+                    'enron2/ham',
+                    'enron3/ham',
+                    'enron4/ham',
+                    'enron5/ham',
+                    'enron6/ham'
+                ]
             }
         }
 
@@ -73,7 +117,7 @@ class EmailDataLoader:
         os.makedirs(self.spam_dir, exist_ok=True)
         os.makedirs(self.ham_dir, exist_ok=True)
 
-        logger.info(f"Initialized EmailDataLoader for {dataset_name} dataset")
+        logger.info(f"Initialized EmailDataLoader for {dataset_name} dataset with full corpus")
 
     def download_dataset(self):
         """
@@ -443,9 +487,19 @@ class EmailDataLoader:
         if 'filepath' in df_to_save.columns:
             df_to_save = df_to_save.drop('filepath', axis=1)
 
-        # Save the DataFrame
+        # Save the DataFrame with proper escape characters and quoting
         filepath = os.path.join(self.processed_dir, filename)
-        df_to_save.to_csv(filepath, index=False)
+
+        # Thêm các tham số này để xử lý ký tự đặc biệt
+        df_to_save.to_csv(
+            filepath,
+            index=False,
+            escapechar='\\',  # Sử dụng ký tự backslash để escape
+            quoting=1,  # Quoting các trường chứa ký tự đặc biệt
+            doublequote=True,  # Sử dụng hai dấu nháy để escape dấu nháy
+            quotechar='"'  # Sử dụng dấu nháy kép cho quoting
+        )
+
         logger.info(f"Saved processed data to {filepath}")
 
         return filepath
