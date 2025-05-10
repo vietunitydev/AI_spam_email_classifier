@@ -15,8 +15,8 @@ import numpy as np
 from tqdm import tqdm
 from email.parser import Parser
 from email.header import decode_header
-from ..utils.logger import logger
-from ..utils.config import RAW_DATA_DIR, PROCESSED_DATA_DIR
+from src.utils.logger import logger
+from src.utils.config import RAW_DATA_DIR, PROCESSED_DATA_DIR
 
 
 class EmailDataLoader:
