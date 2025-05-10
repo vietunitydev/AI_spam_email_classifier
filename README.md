@@ -35,27 +35,22 @@ A comprehensive email spam classification system built with Python. This project
 - For development, include additional tools:
     ```bash
     pip install -e ".[dev]"
-  
-### Install from PyPI
-1. 
-    ```bash
-    pip install spam_classifier
 
 ## How to run code
 1. ```bash
-   python3 step/fix_nltk.py
+   python3 step/fix_nltk.py # On Windows : python step/fix_nltk.py
 2. ```bash
-   python3 step/step1.py
+   python3 step/step1.py # On Windows : python step/step1.py
 3. ```bash
-   python3 step/step2.py
+   python3 step/step2.py # On Windows : python step/step2.py
 4. ```bash
-   python3 step/step3.py
+   python3 step/step3.py # On Windows : python step/step3.py
 5. ```bash
-   python3 step/step4.py
+   python3 step/step4.py # On Windows : python step/step4.py
 6. ```bash
-   python3 step/step5.py
+   python3 step/step5.py # On Windows : python step/step5.py
 7. ```bash
-   python3 step/step6.py
+   python3 step/step6.py # On Windows : python step/step6.py
 # Documentation
 ## Data Module
 ### EmailDataLoader
