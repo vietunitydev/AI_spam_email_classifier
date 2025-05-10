@@ -22,8 +22,8 @@ A comprehensive email spam classification system built with Python. This project
 
 1. Clone this repository:
     ```bash
-    clone https://github.com/yourusername/spam_classifier.git
-    cd spam_classifier
+    clone https://github.com/vietunitydev/AI_spam_email_classifier.git
+    cd AI_spam_email_classifier
 2. Create and activate a virtual environment (optional but recommended):
     ```bash
     python -m venv venv
@@ -41,33 +41,21 @@ A comprehensive email spam classification system built with Python. This project
     ```bash
     pip install spam_classifier
 
-## Quick Start
-### Command-line Interface
-
-1. Download and process a dataset:
-    ```bash
-    python -m spam_classifier download --dataset spamassassin
-
-2. Train a model:
-    ```bash
-    python -m spam_classifier train --dataset spamassassin --model-type multinomial --vectorizer tfidf
-
-3. Evaluate a trained model:
-    ```bash
-    python -m spam_classifier evaluate --model multinomial_spamassassin_model.joblib --dataset spamassassin
-
-4. Classify a single email:
-    ```bash
-    python -m spam_classifier classify --model multinomial_spamassassin_model.joblib --email path/to/email.txt
-
-### Web Interface
-1. Start the web server:
-    ```bash
-    export FLASK_APP=src.interface.web
-    export FLASK_ENV=development
-    flask run
-2. Then open your browser and navigate to http://127.0.0.1:5000/.
-
+## How to run code
+1. ```bash
+   python3 step/fix_ntlk.py
+2. ```bash
+   python3 step/step1.py
+3. ```bash
+   python3 step/step2.py
+4. ```bash
+   python3 step/step3.py
+5. ```bash
+   python3 step/step4.py
+6. ```bash
+   python3 step/step5.py
+7. ```bash
+   python3 step/step6.py
 # Documentation
 ## Data Module
 ### EmailDataLoader
@@ -91,8 +79,8 @@ Class for preprocessing email text data.
 - vectorize_text(processed_df, vectorizer_type='tfidf'): Vectorize the processed text.
 - prepare_data(email_df, vectorizer_type='tfidf', text_column='body', config=None): Prepare data for training and testing.
 
-### Models Module
-#### NaiveBayesModel
+## Models Module
+### NaiveBayesModel
 Wrapper class for Naive Bayes models for spam classification.
 
 - __init__(model_type='multinomial', params=None): Initialize the model.
@@ -103,7 +91,7 @@ Wrapper class for Naive Bayes models for spam classification.
 - load_model(filepath): Load a trained model from a file.
 - get_feature_importances(feature_names): Get the feature importances for the model.
 
-#### CustomNaiveBayes
+### CustomNaiveBayes
 Custom implementation of Naive Bayes for educational purposes.
 
 - __init__(alpha=1.0, fit_prior=True): Initialize the model.
@@ -114,8 +102,8 @@ Custom implementation of Naive Bayes for educational purposes.
 - save_model(filename=None): Save the trained model to a file.
 - load_model(filepath): Load a trained model from a file.
 
-### Evaluation Module
-#### ModelEvaluator
+## Evaluation Module
+### ModelEvaluator
 Class for evaluating spam classification models.
 
 - __init__(y_true, y_pred, y_prob=None, feature_names=None): Initialize the evaluator.
@@ -127,47 +115,47 @@ Class for evaluating spam classification models.
 - plot_feature_importance(model, top_n=20): Plot feature importance.
 - generate_report(model=None): Generate a comprehensive evaluation report.
 
-### Interface Module
-#### Command-line Interface (CLI)
+## Interface Module
+### Command-line Interface (CLI)
 
 - download: Download and process a dataset.
 - train: Train a Naive Bayes model.
 - evaluate: Evaluate a trained model.
 - classify: Classify a single email.
 
-### Web Interface
+## Web Interface
 
 - Homepage: Select a model and input email text or upload an email file.
 - Classification: Display classification result (spam or ham) and probability.
 
-### Project Structure
-spam_classifier/
-│
-├── data/                  # Data directory
-│   ├── raw/               # Raw data
-│   └── processed/         # Processed data
-│
-├── models/                # Trained models
-│
-├── logs/                  # Log files
-│
-├── src/                   # Source code
-│   ├── data/              # Data processing
-│   ├── models/            # Model implementations
-│   ├── evaluation/        # Evaluation tools
-│   ├── utils/             # Utilities
-│   └── interface/         # User interfaces
-│
-├── tests/                 # Unit tests
-│
-├── main.py                # Main entry point
-├── requirements.txt       # Dependencies
-├── setup.py               # Package setup
-└── README.md              # This file
+## Project Structure
+- spam_classifier/
+- │
+- ├── data/                  # Data directory
+- │   ├── raw/               # Raw data
+- │   └── processed/         # Processed data
+- │
+- ├── models/                # Trained models
+- │
+- ├── logs/                  # Log files
+- │
+- ├── src/                   # Source code
+- │   ├── data/              # Data processing
+- │   ├── models/            # Model implementations
+- │   ├── evaluation/        # Evaluation tools
+- │   ├── utils/             # Utilities
+- │   └── interface/         # User interfaces
+- │
+- ├── tests/                 # Unit tests
+- │
+- ├── main.py                # Main entry point
+- ├── requirements.txt       # Dependencies
+- ├── setup.py               # Package setup
+- └── README.md              # This file
 
-### License
+## License
 MIT License
-### Contributing
+## Contributing
 Contributions are welcome! Please feel free to submit a Pull Request.
 ## Acknowledgments
 
