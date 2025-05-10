@@ -43,7 +43,7 @@ A comprehensive email spam classification system built with Python. This project
 
 ## How to run code
 1. ```bash
-   python3 step/fix_ntlk.py
+   python3 step/fix_nltk.py
 2. ```bash
    python3 step/step1.py
 3. ```bash
