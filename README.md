@@ -36,6 +36,14 @@ A comprehensive email spam classification system built with Python. This project
     ```bash
     pip install -e ".[dev]"
 
+## RUN QUICKLY
+1. Down load dataset and train model
+    ```bash
+    python3 run_full_step.py # On Windows : python run_full_step.py
+2. Run app 
+    ```bash
+   python3 step/app_ui.py # On Windows : python step/app_ui.py
+
 ## How to run sequence code
 1. ```bash
    python3 step/fix_nltk.py # On Windows : python step/fix_nltk.py
@@ -50,12 +58,6 @@ A comprehensive email spam classification system built with Python. This project
 6. ```bash
    python3 step/step5.py # On Windows : python step/step5.py
 7. ```bash
-   python3 step/app_ui.py # On Windows : python step/app_ui.py
-   
-## RUN QUICKLY
-1. ```bash
-    python3 run_full_step.py # On Windows : python run_full_step.py
-2. ```bash
    python3 step/app_ui.py # On Windows : python step/app_ui.py
 
 # Documentation
