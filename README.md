@@ -22,7 +22,7 @@ A comprehensive email spam classification system built with Python. This project
 
 1. Clone this repository:
     ```bash
-    clone https://github.com/vietunitydev/AI_spam_email_classifier.git
+    git clone https://github.com/vietunitydev/AI_spam_email_classifier.git
     cd AI_spam_email_classifier
 2. Create and activate a virtual environment (optional but recommended):
     ```bash
