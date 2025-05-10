@@ -3,3 +3,4 @@ spam_classifier.egg-info
 .idea
 data
 logs
+!src/data
